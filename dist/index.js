@@ -10,14 +10,15 @@ const dotenv = require('dotenv');
 dotenv.config();
 const Url_1 = __importDefault(require("./routes/Url"));
 const index_1 = __importDefault(require("./routes/index"));
-const root_1 = __importDefault(require("./routes/root"));
 //import  corsoptions  from './conifg/corsoption'
 const app = (0, express_1.default)();
 const port = 5000 || process.env.port;
 app.use((0, cors_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
-app.use('/', root_1.default);
+app.get('/', (req, res) => {
+    res.send("server is live boy");
+});
 app.use('/api', Url_1.default);
 app.use('/', index_1.default);
 app.listen(port, () => {

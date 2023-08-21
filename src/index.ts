@@ -14,7 +14,9 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/',rootr)
+app.get('/',(req:Request,res:Response)=>{
+  res.send("server is live boy")
+})
 app.use('/api',short)
 app.use('/',inrouter)
 
