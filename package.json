@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "npm run build",
     "start": "node dist/index",
-    "build": "rimraf dist && npx tsc",
+    "build": "rm-rf dist && npx tsc",
     "predev": "npm run build",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index\""
   },
