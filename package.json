@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "npm run build",
     "start": "node dist/index",
-    "build": "rm-rf dist && npx tsc",
+    "build": "rimraf dist && npx tsc",
     "predev": "npm run build",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index\""
   },
@@ -32,6 +32,7 @@
     "mongoose": "^7.4.3",
     "nanoid": "^2.1.11",
     "path": "^0.12.7",
+    "rimraf": "^5.0.1",
     "rm-rf": "^2.0.1"
   }
 }
