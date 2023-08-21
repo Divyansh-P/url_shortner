@@ -8,7 +8,7 @@ require('dotenv').config()
 router.post('/short',async(req:Request,res:Response)=>{
     const {origurl}=req.body
     const UrlId=nanoid(8)
-    const base="https://dminiurl.netlify.app"
+    const base="https://urlbackend-msa3.onrender.com"
     if(validateUrl(origurl)){
         try {
             let url=await Url.findOne({origurl})

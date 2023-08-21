@@ -2,7 +2,7 @@ import express from 'express';
 import Url from '../model/Url';
 const router = express.Router();
 
-router.get('https://dminiurl.netlify.app/:urlId', async (req, res) => {
+router.get('/:urlId', async (req, res) => {
   try {
     const url = await Url.findOne({ urliD: req.params.urlId });
     if (url) {
