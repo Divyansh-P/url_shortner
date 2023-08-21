@@ -6,10 +6,10 @@ dotenv.config()
 import short from './routes/Url'
 import inrouter from './routes/index'
 import rootr from './routes/root'
-import  corsoptions  from './conifg/corsoption'
+//import  corsoptions  from './conifg/corsoption'
 const app:Express=express()
 const port=5000||process.env.port
-app.use(cors(corsoptions))
+app.use(cors())
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

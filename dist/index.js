@@ -11,10 +11,10 @@ dotenv.config();
 const Url_1 = __importDefault(require("./routes/Url"));
 const index_1 = __importDefault(require("./routes/index"));
 const root_1 = __importDefault(require("./routes/root"));
-const corsoption_1 = __importDefault(require("./conifg/corsoption"));
+//import  corsoptions  from './conifg/corsoption'
 const app = (0, express_1.default)();
 const port = 5000 || process.env.port;
-app.use((0, cors_1.default)(corsoption_1.default));
+app.use((0, cors_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use('/', root_1.default);
@@ -24,7 +24,7 @@ app.listen(port, () => {
     console.log(`server is up running on port ${port}`);
 });
 //--------------------------db setup----------------------
-const MongoURL = "mongodb://localhost:27017/url_shortner";
+const MongoURL = "mongodb+srv://EcellNith:pokemon@ecellnithweb.vklgf.mongodb.net/test2";
 mongoose_1.default.connect(MongoURL, {}).catch((err) => {
     console.log('MongoDB connection error. Please make sure MongoDB is running. ' + err);
     process.exit();
