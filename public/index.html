@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../public/app.css">
+    <title>URL shortner</title>
+    <script src="./../public/server.js"></script>
+    <style>
+        body{
+    height: 100vh;
+    width: 100vw;
+}
+.container{
+  height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header,.enter,.shorty{
+    width: 50vw;
+}
+
+.header{
+    text-align: center;
+}
+.enter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+ .vis{
+  display: flex;
+ }
+.shorty{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div class="header">
+        <h1>Mini URL</h1>
+    </div>   
+    <div class="enter" id="info">
+            <input type="text" placeholder="your url" id="fname" name="fname">
+            <button onclick="vis()">generate mini url</button>
+    </div>
+    <div class="shorty" id="ans">
+        <div>
+        <input type="text" value="Hello World" id="myInput">
+        <div class="tooltip">
+<button onclick="myFunction()" onmouseout="outFunc()">
+  <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+  Copy text
+  </button>
+</div>
+</div>
+<button onclick="vis2()">Shorten another url</button>
+</div>
+    </div>
+
+    <script>
+       function myFunction() {
+    var copyText = document.getElementById("myInput");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
+    var tooltip = document.getElementById("myTooltip");
+    tooltip.innerHTML = "Copied: " + copyText.value;
+}
+function outFunc() {
+    var tooltip = document.getElementById("myTooltip");
+    tooltip.innerHTML = "Copy to clipboard";
+}
+function vis() {
+    const e1 = document.getElementById("fname").value;
+    fetch("/api/short", {
+        method: "POST",
+        body: JSON.stringify({
+            origurl: e1
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+        .then((res) => {
+        console.log(res.json());
+    })
+
+}
+
+    </script>
+</body>
